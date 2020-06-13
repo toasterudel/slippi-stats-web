@@ -1,0 +1,12 @@
+Openings / Kill: LUGO: 7.1, BBC: 5.8
+Damage / Opening: LUGO: 16.9, BBC: 21.4
+Neutral Wins: LUGO: 79, BBC: 55
+Most Common Kill Move: LUGO: bair (6), BBC: fsmash (8)
+Most Common Neutral Opener: LUGO: nair (17), BBC: fair (19)
+Earliest Kill: LUGO: 16.6, BBC: 62.3
+Latest Death: LUGO: 155.3, BBC: 159.7
+Total Self-Destructs: LUGO: 0, BBC: 0
+Inputs / Minute: LUGO: 440.2, BBC: 288
+Average Kill Percent: LUGO: 105.6, BBC: 121.3
+Highest Damage Punish: LUGO: 56.7, BBC: 73.4
+Total Damage Done: LUGO: 1908.4, BBC: 2097.1
