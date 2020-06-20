@@ -1,11 +1,12 @@
 const express = require("express");
-const fileUpload = require("express-fileupload");
-let execSync = require("child_process").execSync;
-const fs = require("fs");
-
+const path = require("path");
 const app = express();
-app.use(fileUpload());
 
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/ping", (req, res) => {
+  return res.send("pong");
+});
 //upload enpoint
 app.post("/upload", async (req, res) => {
   if (req.files === null) {
@@ -23,17 +24,8 @@ app.post("/upload", async (req, res) => {
   });
 });
 
-app.get("/analyze", async (req, res) => {
-  try {
-    execSync(
-      "cd ./client/public/uploads/; ./slippi-set-stats-macos; node parse.js; rm *.slp;"
-    );
-
-    // await exec("rm ./client/public/uploads/*.slp").unref();
-    res.json({ msg: "worked" });
-  } catch (err) {
-    return res.status(500).send(err);
-  }
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(5000, () => console.log("server started..."));
+app.listen(5000);
