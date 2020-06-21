@@ -3,34 +3,42 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { uuid } from "uuidv4";
 
+import Message from "./Message";
+
 function FileUpload() {
   const [file, setFile] = useState({});
+  const [message, setMessage] = useState({});
   const [numFiles, setNumFiles] = useState(
     "Select between 1-5 slp files for upload and analysis"
   );
-  const [err, setErr] = useState("");
   const [ezData, setEzData] = useState("");
-  const id = uuid();
+  const [finishedUploading, setFinishedUploading] = useState(false);
+  const [id] = useState(uuid());
 
   const fileChange = async (event) => {
     // console.log(event.target.files[0]);
     // Object.values(event.target.files).map((val) => console.log(val));
     setFile(event.target.files);
     setNumFiles(`${event.target.files.length} files selected`);
-    setErr("");
+    // setErr("");
+    setMessage({});
   };
 
   const uploadFiles = async (event) => {
     event.preventDefault();
     if (JSON.stringify(file) === "{}") {
-      setErr("Please select at least 1 file");
-      console.log("set err");
+      // setErr("Please select at least 1 file");
+      setMessage({
+        type: "danger",
+        text: "Please select at least 1 file to upload",
+      });
       return;
     }
     Object.values(file).map(async (val) => {
       const formData = new FormData();
       formData.append("file", val);
       try {
+        //console.log("posting game file");
         await axios({
           method: "post",
           url: `/upload/:${id}`,
@@ -39,36 +47,37 @@ function FileUpload() {
         });
       } catch (err) {
         if (err.response.status === 500) {
-          console.log("Problem with the server");
+          setMessage({
+            type: "danger",
+            text: "Problem with the server",
+          });
         } else {
-          console.log(err);
+          setMessage({
+            type: "danger",
+            text: err,
+          });
         }
       }
-    });
-    try {
-      const res = await axios({
-        method: "get",
-        url: `/analyze/:${id}`,
+      setFinishedUploading(true);
+      setMessage({
+        type: "success",
+        text: "Finished uploading",
       });
-
-      console.log(res.data);
-    } catch (err) {
-      if (err.response.status === 500) {
-        console.log("Problem with the server");
-      } else {
-        console.log(err);
-      }
-    }
+    });
   };
   const simpleData = async (event) => {
     event.preventDefault();
     try {
       const res = await axios({
         method: "get",
-        url: `/simple/:${id}`,
+        url: `/analyze/:${id}`,
       });
       setEzData(res.data);
     } catch (error) {
+      setMessage({
+        type: "danger",
+        text: error,
+      });
       console.error(error);
     }
   };
@@ -90,10 +99,14 @@ function FileUpload() {
             return <p key={index}>{val.name}</p>;
           })}
         <br />
-        <button onClick={uploadFiles}>Analyze</button>
-        <button onClick={simpleData}>Simple Output</button>
-        <p style={{ color: "red" }}>{err}</p>
-        <p>{ezData}</p>
+        {JSON.stringify(message) !== "{}" && (
+          <Message type={message.type} text={message.text} />
+        )}
+        <div style={{ padding: "5px" }}>
+          <button onClick={uploadFiles}>Upload</button>
+          {finishedUploading && <button onClick={simpleData}>Analyze</button>}
+        </div>
+        <p style={{ whiteSpace: "pre-wrap" }}>{ezData}</p>
       </Form.Group>
     </Form>
   );

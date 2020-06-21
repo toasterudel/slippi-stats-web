@@ -1,0 +1,12 @@
+Openings / Kill: Player1: 7.7, Player2: 7
+Most Common Neutral Opener: Player1: fair (32), Player2: bair (26)
+Earliest Kill: Player1: 68.8, Player2: 52.5
+Latest Death: Player1: 170.6, Player2: 184.1
+Total Self-Destructs: Player1: 0, Player2: 0
+Inputs / Minute: Player1: 408.3, Player2: 588.9
+Average Kill Percent: Player1: 128.2, Player2: 112.8
+Highest Damage Punish: Player1: 56, Player2: 56.9
+Total Damage Done: Player1: 2342.4, Player2: 1845.1
+Neutral Wins: Player1: 81, Player2: 69
+Most Common Kill Move: Player1: fsmash (7), Player2: bair (6)
+Damage / Opening: Player1: 17, Player2: 17.6

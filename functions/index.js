@@ -1,3 +1,5 @@
+const functions = require("firebase-functions");
+// Begin my code
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -65,4 +67,9 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(5000);
+// End my code
+
+// Create and Deploy Your First Cloud Functions
+// https://firebase.google.com/docs/functions/write-firebase-functions
+
+exports.app = functions.https.onRequest(app);
