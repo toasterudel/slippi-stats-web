@@ -96,7 +96,7 @@ function FileUpload() {
         </Form.Text>
         {file &&
           Object.values(file).map((val, index) => {
-            return <p key={index}>{val.name}</p>;
+            return <p key={index} style={{color: "#26bc46"}}>{val.name}</p>;
           })}
         <br />
         {JSON.stringify(message) !== "{}" && (

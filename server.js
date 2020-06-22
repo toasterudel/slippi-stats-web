@@ -38,7 +38,7 @@ app.get("/analyze/:id", async (req, res) => {
   const dir = `${__dirname}/public/uploads/${id}/`;
   try {
     exec(
-      `cd ${dir}; ../slippi-set-stats-macos .; cp ../parse.js .; node parse.js; rm *.slp parse.js output.json;`
+      `cd ${dir}; ../slippi-set-stats-linux .; cp ../parse.js .; node parse.js; rm *.slp parse.js output.json;`
     );
   } catch (err) {
     console.error(err);
