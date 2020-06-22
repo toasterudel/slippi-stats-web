@@ -1,6 +1,6 @@
 # Slippi Stats
 
-Slippi Stats is a website that allows users to upload their own .slp files, and generates stats based on the files. 
+[Slippi Stats](www.slippistats.com) is a website that allows users to upload their own .slp files, and generates stats based on the files. 
 ## Installation
 
 Currently in development. If you want to test it:   
